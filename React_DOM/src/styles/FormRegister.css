@@ -1,0 +1,65 @@
+/* Contenedor principal con imagen de fondo */
+.registro-page {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    url('../img/ReactImagen.png') no-repeat center center; /*  */
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* Tarjeta con efecto cristal (Glassmorphism) */
+.registro-card {
+  background: rgba(255, 255, 255, 0.9) !important; /* Casi blanco, un poco traslúcido */
+  backdrop-filter: blur(10px); /* Desenfoque del fondo */
+  border-radius: 20px !important;
+  color: #333;
+}
+
+.titulo-form {
+  font-weight: 800;
+  color: #1a1a1a;
+  letter-spacing: -1px;
+}
+
+/* Inputs más modernos */
+.custom-input {
+  border: 1px solid #dee2e6;
+  padding: 12px 15px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa;
+}
+
+.custom-input:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+  background-color: #fff;
+}
+
+/* Botón con estilo */
+.btn-guardar {
+  border-radius: 10px;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(45deg, #0d6efd, #004dbb);
+  border: none;
+}
+
+.btn-guardar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+}
+
+.btn-guardar:active {
+  transform: translateY(0);
+}
+
+.formLogin {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    url('../img/ReactImagen.png') no-repeat center center; /*  */
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}

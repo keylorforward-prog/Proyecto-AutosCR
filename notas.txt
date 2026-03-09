@@ -1,0 +1,41 @@
+npm install react-router-dom LISTO
+
+npm i json-server LISTO
+
+npx json-server --watch db.json
+
+npm install bootstrap react-bootstrap
+
+npm install sweetalert2
+
+Bootstrap ?
+
+-------Antes de USO-------
+
+Levantar el Db.json
+
+Levantar el run dev
+
+--------NOTAS--------
+Pagina tipo CRautos o Un concesionario pero quitaria la gracia de Usuarios solo seria un admin 
+y el usuario solo veria los autos desde el index, y con una tarjeta de contactame y se hace una 
+redireccion a WhatsApp (NO FUNCIONAL CLARO), o con los dos pero averiguar como hacer para que ese 
+auto quede guardado con ese usuario para que el tmb pueda editarlo y eliminar para terminar con el 
+CRUD. 
+
+O un taller de vehiculos 
+
+AgregarAuto donde se agrega LOGICO
+
+MostrarAuto va estar en el index para que se vean los autos que se guarden 
+
+FALTA EL CRUD COMPLETO PARA CADA UNO pero eso se hace en la pagina del admin 
+
+Pq las demas solo son para enseñar solo el admin puede editar todo 
+
+El usuario tmb puede editar su vehiculo
+Ademas 
+
+unción flecha para que solo se ejecute al hacer clic
+
+35:00 

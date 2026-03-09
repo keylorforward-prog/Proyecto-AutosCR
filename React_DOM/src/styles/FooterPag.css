@@ -1,0 +1,43 @@
+.custom-footer {
+  background-color: #121212; /* Color oscuro sólido */
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Tamaño del logo */
+.footer-logo-img {
+  height: 35px; /* Más pequeño para que no sea un footer gigante */
+  width: auto;
+}
+
+/* Estilo de la marca */
+.brand-info h5 {
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+/* Sección de contacto */
+.contact-info p {
+  font-size: 0.9rem;
+  color: #cccccc;
+}
+
+/* Línea de copyright pequeña */
+.footer-bottom {
+  border-top: 1px solid #222 !important; /* Borde muy sutil */
+  padding-bottom: 20px;
+}
+
+.footer-bottom p {
+  font-size: 0.75rem;
+}
+
+/* Responsive: Centrar en móviles */
+@media (max-width: 767px) {
+  .custom-footer {
+    text-align: center;
+  }
+  .col-md-6 {
+    justify-content: center !important;
+  }
+}

@@ -1,0 +1,65 @@
+/* --- SECCIÓN QUIÉNES SOMOS --- */
+
+#seccion-nosotros {
+    overflow: hidden;
+}
+
+/* Estilo para las imágenes con bordes redondeados y sombra suave */
+.rounded-4 {
+    border-radius: 1.5rem !important;
+}
+
+/* Caja de estadísticas flotante sobre la imagen */
+.bg-danger {
+    background-color: #ff4d4d !important;
+}
+
+/* Estilo para el texto principal (Lead) */
+.lead {
+    font-size: 1.15rem;
+    font-weight: 300;
+}
+
+/* --- CUADRO DE INTERÉS (LLAMADO A LA ACCIÓN) --- */
+
+#cuadro-interes {
+    background-color: #fdf2f3; /* Un rosado muy claro para resaltar */
+    border: 2px dashed #ff4d4d; /* Borde punteado para que parezca un cupón o algo especial */
+    transition: all 0.3s ease;
+}
+
+#cuadro-interes:hover {
+    background-color: #fff;
+    border-style: solid;
+    transform: scale(1.01);
+}
+
+/* Estilo del botón "QUIERO UN AUTO" */
+#boton-interes {
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#boton-interes:hover {
+    background-color: #282c34; /* Cambia a gris oscuro al pasar el mouse */
+    border-color: #282c34;
+    transform: rotate(-2deg); /* Un pequeño giro divertido */
+}
+
+/* Tipografía para el título dentro de la caja de interés */
+#cuadro-interes h2 {
+    color: #282c34;
+    font-size: 2.2rem;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+    .titulo-principal {
+        font-size: 2.5rem;
+    }
+    
+    #cuadro-interes {
+        padding: 30px 15px;
+    }
+}

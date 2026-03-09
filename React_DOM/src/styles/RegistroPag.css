@@ -1,0 +1,55 @@
+/* Contenedor general centrado */
+.container-registro {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Tarjeta del formulario */
+.registro-card {
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* Título */
+.titulo-form {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #0d6efd;
+}
+
+/* Grupo de inputs */
+.input-group-custom {
+  margin-bottom: 15px;
+}
+
+.input-group-custom label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Botón */
+.btn-guardar {
+  width: 100%;
+  padding: 10px;
+  background: #0d6efd;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-guardar:hover {
+  background: #0b5ed7;
+}

@@ -1,0 +1,100 @@
+CSS
+/* --- CONTENEDOR PRINCIPAL --- */
+.concesionario-contenedor {
+  background-color: #ffffff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* --- SECCIÓN HERO (Fondo oscuro) --- */
+.hero-oscuro {
+  background: linear-gradient(135deg, #282c34 0%, #1c1e22 100%);
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.etiqueta-roja {
+  background-color: #ff4d4d; 
+  color: white;
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.titulo-principal {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-top: 20px;
+  letter-spacing: -1.5px;
+}
+
+.descripcion-hero {
+  font-size: 1.25rem;
+  color: #aaa;
+  max-width: 700px;
+  margin: 20px auto 30px;
+}
+
+/* --- TÍTULOS --- */
+.titulo-seccion {
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #20232a;
+}
+
+.fondo-gris-claro {
+  background-color: #f8f9fa;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+/* --- TARJETAS DE SERVICIOS --- */
+.tarjeta-auto {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  height: 100%;
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+.tarjeta-auto:hover {
+  transform: translateY(-8px);
+}
+
+.tarjeta-auto h3 {
+  color: #ff4d4d;
+  font-weight: 700;
+}
+
+/* --- CITA Y RECUADROS --- */
+.frase-destacada {
+  font-style: italic;
+  font-size: 1.4rem;
+  border-left: 5px solid #ff4d4d;
+  padding: 20px;
+  color: #555;
+  background-color: #f9f9f9;
+}
+
+.caja-requisitos {
+  background-color: #fff5f5;
+  padding: 40px;
+  border-radius: 20px;
+}
+
+.lista-limpia {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-limpia li {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding-bottom: 8px;
+}

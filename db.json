@@ -1,0 +1,72 @@
+{
+  "usuarios": [
+    {
+      "nombreUsuario": "Keylor ",
+      "correoUsuario": "keylordavid@icloud.com",
+      "contrasenaUsuario": "keylor14david",
+      "cedulaUsuario": "hyh",
+      "lugarResidencia": "hyh",
+      "id": "1c4e"
+    },
+    {
+      "id": "3622",
+      "nombreUsuario": "Keylor",
+      "correoUsuario": "keylordavidcr@icloud.com",
+      "contrasenaUsuario": "12345678"
+    },
+    {
+      "id": "7e02",
+      "nombreUsuario": "Keylor",
+      "correoUsuario": "keylordavid@icloud.com",
+      "contrasenaUsuario": "keylor14david"
+    },
+    {
+      "id": "7513",
+      "nombreUsuario": "David",
+      "correoUsuario": "davidcr@icloud.com",
+      "contrasenaUsuario": "123456789"
+    },
+    {
+      "id": "578d",
+      "nombreUsuario": "Keylor Barrantes",
+      "correoUsuario": "yoKdeCr@gmail.com",
+      "contrasenaUsuario": "keylor14david"
+    },
+    {
+      "id": "ce8b",
+      "nombreUsuario": "Keylor David Barrantes Montero",
+      "correoUsuario": "keylillor@gmail.com",
+      "contrasenaUsuario": "keylor14david",
+      "cedulaUsuario": "604910942",
+      "lugarResidencia": "Alajuela"
+    },
+    {
+      "id": "6226",
+      "nombreUsuario": "Perez",
+      "correoUsuario": "ejemplo@gmail.com",
+      "contrasenaUsuario": "123456789",
+      "cedulaUsuario": "6044446646",
+      "lugarResidencia": "Cartago"
+    },
+    {
+      "id": "e9f1",
+      "nombreUsuario": "12345",
+      "correoUsuario": "12345@gmail.com",
+      "contrasenaUsuario": "12345678",
+      "cedulaUsuario": "123456788",
+      "lugarResidencia": "San José"
+    }
+  ],
+  "vehiculos": [],
+  
+  "adminUsuarios": [{
+      "id": "1",
+      "nombreUsuario": "Admin Principal",
+      "correoUsuario": "admin@correo.com",
+      "contrasenaUsuario": "admin123",
+      "cedulaUsuario": "1-1111-1111",
+      "lugarResidencia": "San José"
+    }],
+
+  "$schema": "./node_modules/json-server/schema.json"
+}

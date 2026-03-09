@@ -1,0 +1,56 @@
+.navbar {
+  padding: 1rem 0;
+  /* Evita que el header empuje contenido de forma extraña */
+  margin-bottom: 0 !important; 
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  letter-spacing: -1px;
+}
+
+/* Efecto hover suave para los botones que son transparentes */
+.btn-outline-light.border-0:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Ajuste para móviles: que los botones no se peguen */
+@media (max-width: 991px) {
+  .navbar-nav {
+    padding-top: 1rem;
+    text-align: center;
+  }
+  .btn {
+    margin-bottom: 0.5rem;
+    width: 100%; /* Botones de ancho completo en móvil */
+  }
+}
+/* Estilo para que el botón se vea como un Logo */
+.logo-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: 1.5rem; /* Ajusta al tamaño de tu logo */
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.2s;
+}
+
+.logo-button:hover {
+  opacity: 0.8;
+  color: #f8f9fa; /* Color claro al pasar el mouse */
+}
+
+.logo-button .text-primary {
+  color: #0d6efd !important; /* El punto azul */
+}
+
+/* Evita que el botón se vea azul o raro al hacer clic */
+.logo-button:focus {
+  box-shadow: none;
+}
