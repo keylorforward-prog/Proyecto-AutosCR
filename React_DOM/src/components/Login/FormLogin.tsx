@@ -1,17 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import servicePersona from '../../services/servicePersona'
 import "../../styles/FormRegister.css"
 import Swal from 'sweetalert2';
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-function FormLogin() {
+// 1. Definimos el requisito: el componente espera recibir un 'titulo'
+type Props = {
+    titulo: string;
+};
 
-    //Establecemos las variables 
-    const [usuarios, setUsuarios] = useState([]);
+// 2. Definimos la plantilla del usuario para que el .find() funcione bien
+type Usuario = {
+    correoUsuario: string;
+    contrasenaUsuario: string;
+    nombreUsuario: string;
+};
+
+// 3. Pasamos 'props' al componente
+function FormLogin(props: Props) {
+
+    const [usuarios, setUsuarios] = useState<Usuario[]>([]);
     const [correo, setCorreo] = useState("");
     const [contrasena, setContrasena] = useState("");
 
-    const navigate = useNavigate(); // 2. Inicializamos la función navigate
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function cargarUsuarios() {
@@ -28,15 +40,14 @@ function FormLogin() {
 
         if (usuarioEncontrado) {
             Swal.fire({
-                icon: 'success', //Las comillas 
+                icon: 'success',
                 title: `¡Bienvenido, ${usuarioEncontrado.nombreUsuario}!`,
                 text: 'Has iniciado sesión correctamente..',
                 showConfirmButton: false,
-                timer: 2000 // Se cierra solo en 2 segundos
-            }).then(() => { //Dsp el hace ese then y dirige ahi
-
-            navigate('/UserPag');
-        });
+                timer: 2000
+            }).then(() => {
+                navigate('/UserPag');
+            });
             setContrasena("");
             setCorreo("");
             
@@ -48,17 +59,18 @@ function FormLogin() {
             });
         }
     }
+
     return (
         <div className="formLogin">
             <div className="container py-5">
                 <div className="row justify-content-center align-items-center min-vh-100">
-
                     <div className="col-md-6 col-lg-4">
-
                         <div className="card login-card border-0 shadow-lg">
                             <div className="card-body p-4">
+                                
+                                {/* 4. Usamos la prop aquí para mostrar el título dinámico */}
                                 <h2 className="text-center mb-4 titulo-form">
-                                    Iniciar Sesión
+                                    {props.titulo}
                                 </h2>
 
                                 <div className="mb-3">
@@ -99,4 +111,4 @@ function FormLogin() {
     )
 }
 
-export default FormLogin
+export default FormLogin;

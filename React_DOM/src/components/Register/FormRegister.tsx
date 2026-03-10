@@ -1,11 +1,25 @@
-import React, { useState } from 'react'
-import serviceAdminUsuario from '../../services/serviceAdminUsuarios';
+import { useState, useEffect } from 'react'
+import servicePersona from '../../services/servicePersona'
 import "../../styles/FormRegister.css"
 import Swal from 'sweetalert2';
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
+// 1. Definimos qué datos recibe el componente (Props)
+type Props = {
+  titulo: string;
+};
 
-function FormRegister() {
+// 2. Definimos la estructura del Usuario para la base de datos
+type Usuario = {
+  correoUsuario: string;
+  nombreUsuario: string;
+  contrasenaUsuario: string;
+  cedulaUsuario: string;
+  lugarResidencia: string;
+};
+
+// 3. Pasamos props al componente
+function FormRegister(props: Props) {
 
   const [nombreUsuario, setNombrePersona] = useState("")
   const [correoUsuario, setCorreo] = useState("")
@@ -14,20 +28,24 @@ function FormRegister() {
   const [cedula, setCedula] = useState("")
   const [lugarResidencia, setlugarResidencia] = useState("")
 
-  const [usuariosExistentes, setUsuariosExistentes] = useState([]) //SE inicia vacio esa lista q viene del endpoint
+  const [usuariosExistentes, setUsuariosExistentes] = useState<Usuario[]>([])
 
-  //Fecha de nacimiento.para poder validar que un menor no suba nada ?
-  //En otro proyecto hacer lo de la edad mjr
-  
-  const Navigate = useNavigate(); //ESTO 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function cargar() {
+      const data = await servicePersona.getUsuarios();
+      setUsuariosExistentes(data || []);
+    }
+    cargar();
+  }, []);
 
   async function btnGuardar() {
-    //Find no un for
     const usuarioDuplicado = usuariosExistentes.find(u => u.correoUsuario === correoUsuario.trim());
 
     if (!nombreUsuario.trim() || !correoUsuario.trim() || !contrasenaUsuario.trim()
       || !confirmarContrasena.trim() || !cedula.trim() || !lugarResidencia.trim()) {
-      Swal.fire({ //AQUI ESTABAN LOS Alerts Sencillos
+      Swal.fire({
         icon: 'warning',
         title: 'Campos incompletos',
         text: 'Por favor, llena todos los campos obligatorios.',
@@ -35,57 +53,28 @@ function FormRegister() {
       });
 
     } else if (usuarioDuplicado) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Correo no disponible',
-        text: 'Este correo ya está en uso por otra cuenta.',
-      });
-
+      Swal.fire({ icon: 'error', title: 'Correo no disponible', text: 'Este correo ya está en uso.' });
     } else if (correoUsuario.trim().length < 10) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Correo inválido',
-        text: 'El correo debe tener al menos 10 caracteres.',
-      });
-
+      Swal.fire({ icon: 'error', title: 'Correo inválido', text: 'Mínimo 10 caracteres.' });
     } else if (contrasenaUsuario.trim().length < 8) {
-      Swal.fire({
-        icon: 'info',
-        title: 'Contraseña débil',
-        text: 'La contraseña debe tener al menos 8 caracteres.',
-      });
-
+      Swal.fire({ icon: 'info', title: 'Contraseña débil', text: 'Mínimo 8 caracteres.' });
     } else if (contrasenaUsuario.trim() !== confirmarContrasena.trim()) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error de coincidencia',
-        text: 'Las contraseñas no son iguales.',
-      });
-
+      Swal.fire({ icon: 'error', title: 'Error de coincidencia', text: 'Las contraseñas no son iguales.' });
     } else if (cedula.trim().length < 9) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Cédula inválida',
-        text: 'La cédula debe tener al menos 9 dígitos.',
-      });
-
+      Swal.fire({ icon: 'error', title: 'Cédula inválida', text: 'Mínimo 9 dígitos.' });
     } else {
 
       const objPersona = {
-        nombreUsuario: nombreUsuario,
-        correoUsuario: correoUsuario,
-        contrasenaUsuario: contrasenaUsuario,
+        nombreUsuario,
+        correoUsuario,
+        contrasenaUsuario,
         cedulaUsuario: cedula,
-        lugarResidencia: lugarResidencia
+        lugarResidencia
       }
-      const usuarioAlmacenado = await servicePersona.postUsuarios(objPersona)
-      Swal.fire({
-        icon: 'success',
-        title: '¡Usuario Creado!',
-        text: 'El registro se completó con éxito.',
-        showConfirmButton: false,
-        timer: 2000 // Se cierra solo en 2 segundos
-      });
+
+      await servicePersona.postUsuarios(objPersona)
+      
+      Swal.fire({ icon: 'success', title: '¡Usuario Creado!', showConfirmButton: false, timer: 2000 });
 
       setNombrePersona("");
       setCorreo("");
@@ -94,8 +83,7 @@ function FormRegister() {
       setCedula("")
       setlugarResidencia("")
 
-      Navigate('/Login');
-
+      navigate('/Login');
     }
   }
 
@@ -104,19 +92,19 @@ function FormRegister() {
       <div className="container py-5">
         <div className="row justify-content-center align-items-center min-vh-100">
           <div className="col-md-6 col-lg-4">
-
             <div className="card registro-card border-0 shadow-lg">
               <div className="card-body p-4">
-                <h2 className="text-center mb-4 titulo-form"> Crear Cuenta </h2>
+                
+                {/* 4. Usamos la prop aquí para el título */}
+                <h2 className="text-center mb-4 titulo-form"> {props.titulo} </h2>
 
                 <div className="mb-3">
                   <label className="form-label fw-semibold">Nombre Completo</label>
                   <input
                     type="text"
                     className="form-control custom-input"
-                    placeholder="Ej. Juan Pérez"
                     value={nombreUsuario}
-                    onChange={(evento) => setNombrePersona(evento.target.value)}
+                    onChange={(e) => setNombrePersona(e.target.value)}
                   />
                 </div>
 
@@ -125,9 +113,8 @@ function FormRegister() {
                   <input
                     type="text"
                     className="form-control custom-input"
-                    placeholder="correo@ejemplo.com"
                     value={correoUsuario}
-                    onChange={(evento) => setCorreo(evento.target.value)}
+                    onChange={(e) => setCorreo(e.target.value)}
                   />
                 </div>
 
@@ -136,9 +123,8 @@ function FormRegister() {
                   <input
                     type="password"
                     className="form-control custom-input"
-                    placeholder="••••••••"
                     value={contrasenaUsuario}
-                    onChange={(evento) => setContrasenaUsuario(evento.target.value)}
+                    onChange={(e) => setContrasenaUsuario(e.target.value)}
                   />
                 </div>
 
@@ -147,9 +133,8 @@ function FormRegister() {
                   <input
                     type="password"
                     className="form-control custom-input"
-                    placeholder="••••••••"
                     value={confirmarContrasena}
-                    onChange={(evento) => setConfirmarContrasena(evento.target.value)}
+                    onChange={(e) => setConfirmarContrasena(e.target.value)}
                   />
                 </div>
 
@@ -158,17 +143,17 @@ function FormRegister() {
                   <input
                     type="number"
                     className="form-control custom-input"
-                    placeholder="ejemplo: 604910942"
                     value={cedula}
-                    onChange={(evento) => setCedula(evento.target.value)}
+                    onChange={(e) => setCedula(e.target.value)}
                   />
                 </div>
+
                 <div className="mb-3">
                   <label className="form-label fw-semibold"> Provincia </label>
                   <select
                     className="form-select custom-input"
                     value={lugarResidencia}
-                    onChange={(evento) => setlugarResidencia(evento.target.value)}
+                    onChange={(e) => setlugarResidencia(e.target.value)}
                   >
                     <option value="" disabled>Selecciona una opción...</option>
                     <option value="San José">San José</option>
@@ -181,7 +166,6 @@ function FormRegister() {
                   </select>
                 </div>
 
-
                 <button
                   className="btn btn-primary w-100 fw-bold btn-guardar mt-3 py-2"
                   onClick={btnGuardar}
@@ -190,12 +174,11 @@ function FormRegister() {
                 </button>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
   )
-
 }
-export default FormRegister
+
+export default FormRegister;

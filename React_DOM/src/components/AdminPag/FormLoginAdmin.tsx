@@ -1,12 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import serviceAdminUsuarios from '../../services/serviceAdminUsuarios' // Importamos el nuevo servicio de admin
+import { useState, useEffect } from 'react'
+import servicePersona from '../../services/servicePersona'
 import "../../styles/FormRegister.css"
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom'
 
-function FormLoginAdmin() {
+// 1. Definimos qué recibe el componente (Props)
+type Props = {
+    titulo: string;
+};
 
-    const [usuarios, setUsuarios] = useState([]);
+// 2. Plantilla para los datos que vienen del servicio
+type Usuario = {
+    correoUsuario: string;
+    contrasenaUsuario: string;
+    nombreUsuario: string;
+};
+
+// 3. Pasamos props al componente
+function FormLogin(props: Props) {
+
+    const [usuarios, setUsuarios] = useState<Usuario[]>([]);
     const [correo, setCorreo] = useState("");
     const [contrasena, setContrasena] = useState("");
 
@@ -14,9 +27,8 @@ function FormLoginAdmin() {
 
     useEffect(() => {
         async function cargarUsuarios() {
-            // Usamos la función del nuevo servicio para la tabla adminUsuarios
-            const dataUsuario = await serviceAdminUsuarios.getAdminUsuarios();
-            setUsuarios(dataUsuario);
+            const dataUsuario = await servicePersona.getUsuarios();
+            setUsuarios(dataUsuario || []);
         }
         cargarUsuarios();
     }, []);
@@ -29,13 +41,12 @@ function FormLoginAdmin() {
         if (usuarioEncontrado) {
             Swal.fire({
                 icon: 'success',
-                title: `¡Bienvenido Admin, ${usuarioEncontrado.nombreUsuario}!`,
-                text: 'Accediendo al panel de administración...',
+                title: `¡Bienvenido, ${usuarioEncontrado.nombreUsuario}!`,
+                text: 'Has iniciado sesión correctamente..',
                 showConfirmButton: false,
                 timer: 2000
             }).then(() => {
-                // Redirigimos a la página de administración
-                navigate('/AdminPag'); 
+                navigate('/UserPag');
             });
             setContrasena("");
             setCorreo("");
@@ -43,8 +54,8 @@ function FormLoginAdmin() {
         } else {
             Swal.fire({
                 icon: 'error',
-                title: 'Acceso Denegado',
-                text: 'Credenciales de administrador incorrectas.',
+                title: 'Error de coincidencia',
+                text: 'Correo o contraseña incorrectos.',
             });
         }
     }
@@ -56,16 +67,18 @@ function FormLoginAdmin() {
                     <div className="col-md-6 col-lg-4">
                         <div className="card login-card border-0 shadow-lg">
                             <div className="card-body p-4">
+                                
+                                {/* 4. Usamos la prop dinámica para el título */}
                                 <h2 className="text-center mb-4 titulo-form">
-                                    Admin Login
+                                    {props.titulo}
                                 </h2>
 
                                 <div className="mb-3">
-                                    <label className="form-label fw-semibold">Correo Admin</label>
+                                    <label className="form-label fw-semibold">Correo Electrónico</label>
                                     <input
                                         type="email"
                                         className="form-control custom-input"
-                                        placeholder="admin@correo.com"
+                                        placeholder="correo@ejemplo.com"
                                         value={correo}
                                         onChange={(e) => setCorreo(e.target.value)}
                                     />
@@ -87,7 +100,7 @@ function FormLoginAdmin() {
                                     className="btn btn-primary w-100 fw-bold btn-guardar mt-3 py-2"
                                     onClick={validarLogin}
                                 >
-                                    INGRESAR COMO ADMIN
+                                    INGRESAR
                                 </button>
                             </div>
                         </div>
@@ -98,4 +111,4 @@ function FormLoginAdmin() {
     )
 }
 
-export default FormLoginAdmin
+export default FormLogin;
